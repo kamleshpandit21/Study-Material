@@ -1,0 +1,89 @@
+🔰 1. Controller Kya Hota Hai?
+Controller ek aisa PHP class hota hai jahan aap application ka logic likhte ho — jo route ke request ko handle karta hai aur view ya response return karta hai.
+
+     MVC pattern me Controller ka kaam hota hai:
+       👉 Route se request lena →
+       👉 Logic lagana →
+       👉 Model ya View ko return karna
+
+---------------------------------------------------------
+ Controller Banana (Command Line se)
+   php artisan make:controller MyController
+
+
+➡️ Ye app/Http/Controllers folder me ek file banata hai: MyController.php
+
+Basic structure:---
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class MyController extends Controller
+{
+    public function index()
+    {
+        return "Hello from Controller!";
+    }
+}
+
+
+---------------------------------------------------------
+Controller ko Route se Connect Karna
+
+use App\Http\Controllers\MyController;
+
+Route::get('/hello', [MyController::class, 'index']);
+
+
+----------------------------------------------------------
+Controller Methods (Examples)----
+
+
+public function home() {
+    return view('home');
+}
+
+public function show($id) {
+    return "Showing user ID: " . $id;
+}
+
+public function store(Request $request) {
+    // form data process karna
+}
+
+
+Route::get('/home', [MyController::class, 'home']);
+Route::get('/user/{id}', [MyController::class, 'show']);
+Route::post('/submit', [MyController::class, 'store']);
+
+-----------------------------------------------------------
+
+
+🧰  Resource Controller
+
+-> php artisan make:controller ProductController --resource
+-> Route::resource('products', ProductController::class);
+
+-------------------------------------------------------------------
+🧠 Single Action Controller (Invoke method)
+-> php artisan make:controller ContactController --invokable
+-> Route::get('/contact', ContactController::class);
+
+--method inside controller
+
+    public function __invoke() {
+    return "Contact page";
+}
+
+
+-------------------------------------------------------------
+
+Predefined Lifecycle Methods  #######################
+
+| Method          | Description                                                           |
+| --------------- | --------------------------------------------------------------------- |
+| `__construct()` | Controller ke start me call hota hai, yahi pe middleware use hota hai |
+| `__invoke()`    | Single-action controller ke liye                                      |
+| `callAction()`  | Laravel internally method call karta hai isse                         |
+| `middleware()`  | Middleware lagane ke liye                                             |

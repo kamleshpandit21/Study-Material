@@ -1,0 +1,147 @@
+1. Routing Kya Hai? (Introduction)
+
+Browser me jo URL likhte ho usko kis controller/method/view ko dena hai, ye decide karna.
+eg-
+http://localhost:8000/about
+To Laravel check karega ki /about URL ke liye kya response bhejna hai
+
+//------------------------------------------------
+ Basic Route Banana (GET Method)
+
+// routes/web.php
+
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+//------------------------------------------------
+Route with Controller (Industry Standard)
+
+use App\Http\Controllers\HomeController;
+
+Route::get('/home', [HomeController::class, 'index']);
+
+//--------------------------------------------------
+Route ke Types (GET, POST, PUT, DELETE)
+Route::get('/', [FormController::class, 'index']);
+Route::post('/save', [FormController::class, 'store']);
+Route::put('/update/{id}', [FormController::class, 'update']);
+Route::delete('/delete/{id}', [FormController::class, 'destroy']);
+
+
+//-----------------------------------------------------
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+
+//-----------------------------------------------------
+Route Naming (Industry Recommended)
+
+Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+ we can use the name of the route like this 
+ <a href="{{ route('user.profile') }}">My Profile</a>
+
+//-------------------------------------------------------
+
+Route Grouping (Common Prefix & Middleware)
+
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard']);
+    Route::get('/users', [AdminController::class, 'users']);
+});
+
+------------------------impotant thing to understand --------------------
+Resource Route Kya Hota Hai?
+Route::resource('products', ProductController::class);
+Resource Route Laravel ka shortcut hai jo automatically 7 CRUD routes banata hai ek hi line me.
+
+  -----steps to implementaion of Resource Route
+ Step 1: Controller Banana (resource type ka)
+
+ php artisan make:controller ProductController --resource
+
+Ye command ek controller banayegi jisme already 7 methods honge:
+index(), create(), store(), show(), edit(), update(), destroy()
+
+ Step 2: Route Define Karna
+ // routes/web.php
+use App\Http\Controllers\ProductController;
+
+Route::resource('products', ProductController::class);
+
+   
+   -----------------------------------------------------------------------------------------------------------------------
+   complete laravel routing guide- all you can do 
+   ✅ 1. Basic Route (GET Request)
+   Route::get('/about', function () {
+    return 'About Page';
+});
+   
+
+   📥 2. Passing Values via URL (Route Parameters)
+   Route::get('/user/{id}', function ($id) {
+    return "User ID is " . $id;
+});
+
+--------------------------------------------------------
+
+******Basic Http methods  of Laravel Routing******
+
+
+| Method             | Description                                         |
+| ------------------ | --------------------------------------------------- |
+| `Route::get()`     | GET request handle karta hai                        |
+| `Route::post()`    | POST request handle karta hai                       |
+| `Route::put()`     | PUT request (update ke liye)                        |
+| `Route::patch()`   | PATCH request (partial update)                      |
+| `Route::delete()`  | DELETE request handle karta hai                     |
+| `Route::options()` | OPTIONS request handle karta hai                    |
+| `Route::match()`   | Multiple methods (GET, POST, etc.) handle karta hai |
+| `Route::any()`     | All methods (GET, POST, etc.) handle karta hai      |
+
+
+
+
+******** Resourceful Routes**************
+
+| Method                  | Description                                            |
+| ----------------------- | ------------------------------------------------------ |
+| `Route::resource()`     | Full CRUD route create karta hai                       |
+| `Route::resources()`    | Multiple resource controllers ek sath define karta hai |
+| `Route::apiResource()`  | Resource routes bina create/edit ke (for APIs)         |
+| `Route::apiResources()` | Multiple API resources define karta hai                |
+
+
+
+********* Route Configuration & Helpers**********
+
+| Method           | Description                                     |
+| ---------------- | ----------------------------------------------- |
+| `->name()`       | Route ko name deta hai                          |
+| `->middleware()` | Route me middleware apply karta hai             |
+| `->prefix()`     | Route group ke liye prefix lagata hai           |
+| `->namespace()`  | Controller ke liye namespace set karta hai      |
+| `->where()`      | Route parameter ke liye condition set karta hai |
+| `->defaults()`   | Default values set karta hai                    |
+| `->domain()`     | Subdomain-specific routes banata hai            |
+
+
+*************Route Grouping******************
+| Method                | Description                                     |
+| --------------------- | ----------------------------------------------- |
+| `Route::group()`      | Multiple routes ko ek group me define karta hai |
+| `Route::prefix()`     | Route group ke liye common prefix deta hai      |
+| `Route::middleware()` | Group routes ke liye middleware apply karta hai |
+
+*************Other Utility Methods*****************
+
+
+| Method                        | Description                                             |
+| ----------------------------- | ------------------------------------------------------- |
+| `Route::redirect()`           | Ek route se dusre route pe redirect karta hai           |
+| `Route::view()`               | Seedha ek view return karta hai                         |
+| `Route::fallback()`           | Jab koi bhi route match nahi hota, tab ye call hota hai |
+| `Route::current()`            | Current route instance deta hai                         |
+| `Route::is()`                 | Current route ka name check karta hai                   |
+| `Route::has()`                | Kya koi named route exist karta hai, check karta hai    |
+| `Route::currentRouteName()`   | Current route ka name return karta hai                  |
+| `Route::currentRouteAction()` | Current route ka controller/method return karta hai     |
