@@ -1,0 +1,112 @@
+// ===========================================git Commands List=================================//
+
+//**************************************************//
+//***********1. Basic Git Setup Commands**************//
+
+| Command                                            | Description                   |
+| -------------------------------------------------- | ----------------------------- |
+| `git --version`                                    | Check Git version             |
+| `git config --global user.name "Kamlesh"`          | Set global username           |
+| `git config --global user.email "you@example.com"` | Set global email              |
+| `git config --list`                                | Show all global configs       |
+| `git config --global core.editor "code"`           | Set VS Code as default editor |
+
+
+//*****************************************************//
+//*********2. Local Repository Initialization**********//
+
+| Command                   | Description                   |
+| ------------------------- | ----------------------------- |
+| `git init`                | Initialize a new Git repo     |
+| `git clone <url>`         | Clone a repo from remote      |
+| `git status`              | Show working directory status |
+| `git add .`               | Stage all changes             |
+| `git add <file>`          | Stage specific file           |
+| `git commit -m "message"` | Commit changes with message   |
+
+
+
+//*****************************************************//
+//*********3. Remote Repository Management*************//
+
+| Command                             | Description                          |
+| ----------------------------------- | ------------------------------------ |
+| `git remote -v`                     | Show remote URLs                     |
+| `git remote add origin <url>`       | Add a remote repo                    |
+| `git remote remove origin`          | Remove a remote                      |
+| `git push -u origin master`         | Push to remote with upstream         |
+| `git push`                          | Push changes                         |
+| `git pull`                          | Fetch & merge remote changes         |
+| `git fetch`                         | Only fetch remote changes (no merge) |
+| `git push origin --delete <branch>` | Delete remote branch                 |
+
+
+//*****************************************************//
+//************4. Branching & Merging******************//
+
+| Command                  | Description               |
+| ------------------------ | ------------------------- |
+| `git branch`             | List branches             |
+| `git branch <name>`      | Create new branch         |
+| `git checkout <name>`    | Switch to branch          |
+| `git checkout -b <name>` | Create + switch to branch |
+| `git merge <branch>`     | Merge branch into current |
+| `git branch -d <name>`   | Delete branch             |
+| `git branch -D <name>`   | Force delete branch       |
+| `git switch <branch>`    | New way to switch branch  |
+
+
+
+//*****************************************************//
+//******5.Stashing (Save Temporary Changes)************//
+
+| Command           | Description          |
+| ----------------- | -------------------- |
+| `git stash`       | Save current changes |
+| `git stash list`  | List stashes         |
+| `git stash apply` | Apply last stash     |
+| `git stash pop`   | Apply & delete stash |
+| `git stash clear` | Remove all stashes   |
+
+
+
+
+//*****************************************************//
+//***************** 6. Undoing Changes*****************//
+
+| Command                  | Description                  |
+| ------------------------ | ---------------------------- |
+| `git restore <file>`     | Undo unstaged changes        |
+| `git checkout -- <file>` | Old way to discard changes   |
+| `git reset HEAD <file>`  | Unstage file                 |
+| `git reset --hard`       | Reset everything             |
+| `git revert <commit>`    | Undo a commit safely         |
+| `git reset <commit>`     | Move HEAD to specific commit |
+
+
+//*****************************************************//
+//*************7.Viewing Logs & History****************//
+
+| Command             | Description                |
+| ------------------- | -------------------------- |
+| `git log`           | View commit history        |
+| `git log --oneline` | Short one-line log         |
+| `git show <commit>` | Show details of a commit   |
+| `git diff`          | Show unstaged changes      |
+| `git diff --staged` | Show staged changes        |
+| `git blame <file>`  | Show who changed what line |
+
+
+
+//*****************************************************//
+//***************** 6. Undoing Changes*****************//
+//*****************************************************//
+//***************** 6. Undoing Changes*****************//
+//*****************************************************//
+//***************** 6. Undoing Changes*****************//
+//*****************************************************//
+//***************** 6. Undoing Changes*****************//
+//*****************************************************//
+//***************** 6. Undoing Changes*****************//
+//*****************************************************//
+//***************** 6. Undoing Changes*****************//
